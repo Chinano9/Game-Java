@@ -15,6 +15,8 @@ public class Game extends Canvas implements Runnable{
     private static final int WIDE = 800, HEIGHT = 600;
     private static final String NAME = "Game";
     
+    private static int ups = 0, fps = 0;
+    
     private static volatile boolean inRun = false;
     
     private static JFrame window;
@@ -55,10 +57,43 @@ public class Game extends Canvas implements Runnable{
         }
     }
     
+    private void update(){
+        ups++;
+    }
+    
+    private void print(){
+        fps++;
+    }
+    
     @Override
     public void run(){
+        final int NS_BY_SECOND = 1000000000;
+        final byte UPS_TARGET = 60;
+        final double NS_BY_UPDATE = NS_BY_SECOND / UPS_TARGET;
+        
+        long referenceUpdate = System.nanoTime(), referenceCounter = System.nanoTime();
+        
+        double currentTime, delta = 0;
+        
         while (inRun) {
+            final long bucleStart = System.nanoTime();
             
+            currentTime = bucleStart - referenceUpdate;
+            referenceUpdate = bucleStart;
+            
+            delta += currentTime / NS_BY_UPDATE;
+            while (delta >= 1) {
+                update();
+                delta--;
+            }
+            print();
+            
+            if (System.nanoTime() - referenceCounter > NS_BY_SECOND) {
+                window.setTitle(NAME + " || UPS: " + ups + " || FPS: " + fps);
+                ups = 0;
+                fps = 0;
+                referenceCounter = System.nanoTime();
+            }
         }
     }
 
