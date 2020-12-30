@@ -1,6 +1,7 @@
 
 package game;
 
+import control.Keyboard;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Dimension;
@@ -21,9 +22,13 @@ public class Game extends Canvas implements Runnable{
     
     private static JFrame window;
     private static Thread thread;
+    private static Keyboard keyboard;
     
     private Game(){
         setPreferredSize(new Dimension(WIDE,HEIGHT));
+        
+        keyboard = new Keyboard();
+        addKeyListener(keyboard);
         
         window = new JFrame(NAME);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,6 +63,21 @@ public class Game extends Canvas implements Runnable{
     }
     
     private void update(){
+        keyboard.update();
+        
+        if (keyboard.up) {
+            System.out.println("Up");
+        }
+        if (keyboard.down) {
+            System.out.println("Down");
+        }
+        if (keyboard.left) {
+            System.out.println("Left");
+        }
+        if (keyboard.right) {
+            System.out.println("Right");
+        }
+        
         ups++;
     }
     
@@ -74,6 +94,8 @@ public class Game extends Canvas implements Runnable{
         long referenceUpdate = System.nanoTime(), referenceCounter = System.nanoTime();
         
         double currentTime, delta = 0;
+        
+        requestFocus();
         
         while (inRun) {
             final long bucleStart = System.nanoTime();
