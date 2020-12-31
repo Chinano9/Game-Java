@@ -1,10 +1,15 @@
 
 package graphics;
 
-public class Screen {
+public final class Screen {
     private final int width, height;
     
     public final int [] pixels;
+    
+    //Temporal
+    private final static int SPRITE_SIZE = 32; 
+    private final static int SPRITE_MASK = SPRITE_SIZE - 1;
+    //Temporal End
 
     public Screen(int width, int height) {
         this.width = width;
@@ -33,7 +38,7 @@ public class Screen {
                     continue;
                 }
                 
-                //draw
+                
                 
             }
         }

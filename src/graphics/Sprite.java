@@ -12,6 +12,10 @@ public final class Sprite {
     private int x, y;
     public int [] pixels;
     private final SpriteSheet sheet;
+    
+    //Sprite collection
+    
+    //Collection end
 
     public Sprite(final int size, final int column, final int row, final SpriteSheet sheet) {
         this.size = size;
