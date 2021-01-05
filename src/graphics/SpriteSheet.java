@@ -11,17 +11,18 @@ public class SpriteSheet{
     public final int [] pixels;
     
     //Sprite sheet collection.
-    
+    public static SpriteSheet desert = new SpriteSheet("/textures/SpritesDesert.png", 320, 320);
     //Collection end.
 
-    public SpriteSheet(final String root, final int width,final int height) throws IOException {
+    public SpriteSheet(final String root, final int width,final int height){
         this.width = width;
         this.height = height;
         this.root = root;
         
         pixels = new int [width * height];
+        BufferedImage image;
         try {
-        	BufferedImage image = ImageIO.read(SpriteSheet.class.getResource(root));
+        	image = ImageIO.read(SpriteSheet.class.getResource(root));
         	image.getRGB(0, 0, width, height, pixels, 0, width);
         }catch(IOException e){
         	e.printStackTrace();

@@ -80,16 +80,16 @@ public class Game extends Canvas implements Runnable{
         keyboard.update();
         
         if (keyboard.up) {
-            System.out.println("Up");
+            y++;
         }
         if (keyboard.down) {
-            System.out.println("Down");
+            y--;
         }
         if (keyboard.left) {
-            System.out.println("Left");
+            x++;
         }
         if (keyboard.right) {
-            System.out.println("Right");
+            x--;
         }
         
         ups++;

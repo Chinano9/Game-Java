@@ -38,7 +38,7 @@ public final class Screen {
                     continue;
                 }
                 
-                
+                pixels[positionX + positionY * width] = Sprite.asphalt.pixels[(x & SPRITE_MASK) + (y & SPRITE_MASK) * SPRITE_SIZE];
                 
             }
         }

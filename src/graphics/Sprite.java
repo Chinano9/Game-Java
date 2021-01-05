@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package graphics;
 
@@ -11,11 +6,12 @@ public final class Sprite {
     
     private int x, y;
     public int [] pixels;
+    
     private final SpriteSheet sheet;
     
-    //Sprite collection
-    
-    //Collection end
+    //Sprite collection.
+    public static Sprite asphalt = new Sprite(32, 0, 0, SpriteSheet.desert);
+    //Collection end.
 
     public Sprite(final int size, final int column, final int row, final SpriteSheet sheet) {
         this.size = size;
@@ -26,7 +22,7 @@ public final class Sprite {
         this.sheet = sheet;
         
         for (int y = 0; y < size; y++) {
-            for (int x = 0; x < 10; x++) {
+            for (int x = 0; x < size; x++) {
                 pixels[x + y * size] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.getWidth()];
             }
         }
